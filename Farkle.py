@@ -37,6 +37,7 @@ def turn():
     end_turn.configure(state = NORMAL)
     pair = pairs()
     if pair == True:
+        print(roll)
         dice_button.grid_forget()
         dice_button2.grid_forget()
         dice_button3.grid_forget()
@@ -167,39 +168,35 @@ def keep_dice(button):
     global count, number_of_dice 
     if button["text"] == "1" and count == 0:
         point_label = Label(root, image = one, text = "1")
-        point_label.grid(row = 3, column = 3)
+        point_label.grid(row = 2, column = 3)
         count += 1
         number_of_dice -= 1
     elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
         point_label = Label(root, image = two, text = "2")
-        point_label.grid(row = 3, column = 3)
+        point_label.grid(row = 2, column = 3)
         count += 1
         number_of_dice -= 1
     elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
         point_label = Label(root, image = three, text = "3")
-        point_label.grid(row = 3, column = 3)
+        point_label.grid(row = 2, column = 3)
         count += 1
         number_of_dice -= 1
     elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
         point_label = Label(root, image = four, text = "4")
-        point_label.grid(row = 3, column = 3)
+        point_label.grid(row = 2, column = 3)
         count += 1
         number_of_dice -= 1
-    elif button["text"] == "5" and count == 0 and roll.count(5) >= 3:
+    elif button["text"] == "5" and count == 0:
         point_label = Label(root, image = five, text = "5")
-        point_label.grid(row = 3, column = 3)
+        point_label.grid(row = 2, column = 3)
         count += 1
         number_of_dice -= 1
     elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
         point_label = Label(root, image = six, text = "6")
-        point_label.grid(row = 3, column = 3)
+        point_label.grid(row = 2, column = 3)
         count += 1
-        number_of_dice -= 1
-    else:
-        messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
-        exit
-                             
-    if button["text"] == "1" and count == 1:
+        number_of_dice -= 1                     
+    elif button["text"] == "1" and count == 1:
         point_label2 = Label(root, image = one, text = "1")
         point_label2.grid(row = 2, column = 4)
         count += 1
@@ -229,10 +226,7 @@ def keep_dice(button):
         point_label2.grid(row = 2, column = 4)
         count += 1
         number_of_dice -= 1
-    else:
-        messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
-
-    if button["text"] == "1" and count == 2:
+    elif button["text"] == "1" and count == 2:
         point_label3 = Label(root, image = one, text = "1")
         point_label3.grid(row = 2, column = 5)
         count += 1
@@ -252,7 +246,7 @@ def keep_dice(button):
         point_label.grid(row = 2, column = 5)
         count += 1
         number_of_dice -= 1
-    elif button["text"] == "5" and count == 2 and roll.count(5) >= 3:
+    elif button["text"] == "5" and count == 2:
         point_label2 = Label(root, image = five, text = "5")
         point_label.grid(row = 2, column = 5)
         count += 1
@@ -261,11 +255,8 @@ def keep_dice(button):
         point_label2 = Label(root, image = six, text = "6")
         point_label.grid(row = 2, column = 5)
         count += 1
-        number_of_dice -= 1
-    else:
-        messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
-
-    if button["text"] == "1" and count == 3:
+        number_of_dice -= 1      
+    elif button["text"] == "1" and count == 3:
         point_label2 = Label(root, image = one, text = "1")
         point_label.grid(row = 2, column = 6)
         count += 1
@@ -285,7 +276,7 @@ def keep_dice(button):
         point_label.grid(row = 2, column = 6)
         count += 1
         number_of_dice -= 1
-    elif button["text"] == "5" and count == 3 and roll.count(5) >= 3:
+    elif button["text"] == "5" and count == 3:
         point_label2 = Label(root, image = five, text = "5")
         point_label.grid(row = 2, column = 6)
         count += 1
@@ -295,10 +286,7 @@ def keep_dice(button):
         point_label.grid(row = 2, column = 6)
         count += 1
         number_of_dice -= 1
-    else:
-        messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
-
-    if button["text"] == "1" and count == 4:
+    elif button["text"] == "1" and count == 4:
         point_label2 = Label(root, image = one, text = "1")
         point_label.grid(row = 2, column = 7)
         count += 1
@@ -318,7 +306,7 @@ def keep_dice(button):
         point_label.grid(row = 2, column = 7)
         count += 1
         number_of_dice -= 1
-    elif button["text"] == "5" and count == 4 and roll.count(5) >= 3:
+    elif button["text"] == "5" and count == 4:
         point_label2 = Label(root, image = five, text = "5")
         point_label.grid(row = 2, column = 7)
         count += 1
@@ -328,10 +316,7 @@ def keep_dice(button):
         point_label.grid(row = 2, column = 7)
         count += 1
         number_of_dice -= 1
-    else:
-        messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
-
-    if button["text"] == "1" and count == 5:
+    elif button["text"] == "1" and count == 5:
         point_label2 = Label(root, image = one, text = "1")
         point_label.grid(row = 2, column = 8)
         count += 1
@@ -351,7 +336,7 @@ def keep_dice(button):
         point_label.grid(row = 2, column = 8)
         count += 1
         number_of_dice -= 1
-    elif button["text"] == "5" and count == 5 and roll.count(5) >= 3:
+    elif button["text"] == "5" and count == 5:
         point_label2 = Label(root, image = five, text = "5")
         point_label.grid(row = 2, column = 8)
         count += 1
