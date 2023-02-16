@@ -4,10 +4,6 @@ from tkinter import *
 from tkinter import messagebox
 
 
-####Not working
-### When keep_dice function runs, it has errors, keeps repeating error, button shows up 3 times, still need
-###to add point system, lots of work to do
-
 
 root = Tk()
 root.title("Farkle")
