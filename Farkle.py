@@ -16,7 +16,9 @@ p1points = 0
 p2points = 0
 points = []
 pair_numbers = []
+labels = []
 turnCheck = 0
+root.geometry("900x900")
 one = PhotoImage(file = "One.png")
 two = PhotoImage(file = "Two.png")
 three = PhotoImage(file = "Three.png")
@@ -28,113 +30,112 @@ def turn():
     global roll_turns, number_of_dice, count
     roll = dice_roll(number_of_dice)
     roll_button.configure(state = DISABLED)
-    roll_turns += 1
     roll_again.configure(state = NORMAL)
     end_turn.configure(state = NORMAL)
-    pair = pairs()
-    if pair == True:
-        print(roll)
-        dice_button.grid_forget()
-        dice_button2.grid_forget()
-        dice_button3.grid_forget()
-        dice_button4.grid_forget()
-        dice_button5.grid_forget()
-        dice_button6.grid_forget()
-##        if turnCheck % 2 == 0:
+##    pair = pairs()
+##    if pair == True:
+##        print(roll)
+##        dice_button1.grid_forget()
+##        dice_button2.grid_forget()
+##        dice_button3.grid_forget()
+##        dice_button4.grid_forget()
+##        dice_button5.grid_forget()
+##        dice_button6.grid_forget()
+####        if turnCheck % 2 == 0:
 ##            p1points += 1500
 ##        else:
 ##            p2points += 1500
-        for number in pair_numbers:
-            if number == 1:
-                point_label = Label(root, image = one)
-                point_label2 = Label(root, image = one)
-                if count == 0:
-                    point_label.grid(row = 2, column = 3)
-                    point_label2.grid(row = 2, column = 4)
-                    count += 2
-                elif count == 2:
-                    point_label.grid(row = 2, column = 5)
-                    point_label2.grid(row = 2, column = 6)
-                    count += 2
-                elif count == 4:
-                    point_label.grid(row = 2, column = 7)
-                    point_label2.grid(row = 2, column = 8)
-                    count = 0
-            elif number == 2:
-                point_label = Label(root, image = two)
-                point_label2 = Label(root, image = two)
-                if count == 0:
-                    point_label.grid(row = 2, column = 3)
-                    point_label2.grid(row = 2, column = 4)
-                    count += 2
-                elif count == 2:
-                    point_label.grid(row = 2, column = 5)
-                    point_label2.grid(row = 2, column = 6)
-                    count += 2
-                elif count == 4:
-                    point_label.grid(row = 2, column = 7)
-                    point_label2.grid(row = 2, column = 8)
-                    count = 0
-            elif number == 3:
-                point_label = Label(root, image = three)
-                point_label2 = Label(root, image = three)
-                if count == 0:
-                    point_label.grid(row = 2, column = 3)
-                    point_label2.grid(row = 2, column = 4)
-                    count += 2
-                elif count == 2:
-                    point_label.grid(row = 2, column = 5)
-                    point_label2.grid(row = 2, column = 6)
-                    count += 2
-                elif count == 4:
-                    point_label.grid(row = 2, column = 7)
-                    point_label2.grid(row = 2, column = 8)
-                    count = 0
-            elif number == 4:
-                point_label = Label(root, image = four)
-                point_label2 = Label(root, image = four)
-                if count == 0:
-                    point_label.grid(row = 2, column = 3)
-                    point_label2.grid(row = 2, column = 4)
-                    count += 2
-                elif count == 2:
-                    point_label.grid(row = 2, column = 5)
-                    point_label2.grid(row = 2, column = 6)
-                    count += 2
-                elif count == 4:
-                    point_label.grid(row = 2, column = 7)
-                    point_label2.grid(row = 2, column = 8)
-                    count = 0
-            elif number == 5:
-                point_label = Label(root, image = five)
-                point_label2 = Label(root, image = five)
-                if count == 0:
-                    point_label.grid(row = 2, column = 3)
-                    point_label2.grid(row = 2, column = 4)
-                    count += 2
-                elif count == 2:
-                    point_label.grid(row = 2, column = 5)
-                    point_label2.grid(row = 2, column = 6)
-                    count += 2
-                elif count == 4:
-                    point_label.grid(row = 2, column = 7)
-                    point_label2.grid(row = 2, column = 8)
-                    count = 0
-            elif number == 6:
-                point_label = Label(root, image = six)
-                point_label2 = Label(root, image = six)
-                if count == 0:
-                    point_label.grid(row = 2, column = 3)
-                    point_label2.grid(row = 2, column = 4)
-                    count += 2
-                elif count == 2:
-                    point_label.grid(row = 2, column = 5)
-                    point_label2.grid(row = 2, column = 6)
-                    count += 2
-                elif count == 4:
-                    point_label.grid(row = 2, column = 7)
-                    point_label2.grid(row = 2, column = 8)
-                    count = 0
+##        for number in pair_numbers:
+##            if number == 1:
+##                point_label = Label(root, image = one)
+##                point_label2 = Label(root, image = one)
+##                if count == 0:
+##                    point_label.grid(row = 2, column = 3)
+##                    point_label2.grid(row = 2, column = 4)
+##                    count += 2
+##                elif count == 2:
+##                    point_label.grid(row = 2, column = 5)
+##                    point_label2.grid(row = 2, column = 6)
+##                    count += 2
+##                elif count == 4:
+##                    point_label.grid(row = 2, column = 7)
+##                    point_label2.grid(row = 2, column = 8)
+##                    count = 0
+##            elif number == 2:
+##                point_label = Label(root, image = two)
+##                point_label2 = Label(root, image = two)
+##                if count == 0:
+##                    point_label.grid(row = 2, column = 3)
+##                    point_label2.grid(row = 2, column = 4)
+##                    count += 2
+##                elif count == 2:
+##                    point_label.grid(row = 2, column = 5)
+##                    point_label2.grid(row = 2, column = 6)
+##                    count += 2
+##                elif count == 4:
+##                    point_label.grid(row = 2, column = 7)
+##                    point_label2.grid(row = 2, column = 8)
+##                    count = 0
+##            elif number == 3:
+##                point_label = Label(root, image = three)
+##                point_label2 = Label(root, image = three)
+##                if count == 0:
+##                    point_label.grid(row = 2, column = 3)
+##                    point_label2.grid(row = 2, column = 4)
+##                    count += 2
+##                elif count == 2:
+##                    point_label.grid(row = 2, column = 5)
+##                    point_label2.grid(row = 2, column = 6)
+##                    count += 2
+##                elif count == 4:
+##                    point_label.grid(row = 2, column = 7)
+##                    point_label2.grid(row = 2, column = 8)
+##                    count = 0
+##            elif number == 4:
+##                point_label = Label(root, image = four)
+##                point_label2 = Label(root, image = four)
+##                if count == 0:
+##                    point_label.grid(row = 2, column = 3)
+##                    point_label2.grid(row = 2, column = 4)
+##                    count += 2
+##                elif count == 2:
+##                    point_label.grid(row = 2, column = 5)
+##                    point_label2.grid(row = 2, column = 6)
+##                    count += 2
+##                elif count == 4:
+##                    point_label.grid(row = 2, column = 7)
+##                    point_label2.grid(row = 2, column = 8)
+##                    count = 0
+##            elif number == 5:
+##                point_label = Label(root, image = five)
+##                point_label2 = Label(root, image = five)
+##                if count == 0:
+##                    point_label.grid(row = 2, column = 3)
+##                    point_label2.grid(row = 2, column = 4)
+##                    count += 2
+##                elif count == 2:
+##                    point_label.grid(row = 2, column = 5)
+##                    point_label2.grid(row = 2, column = 6)
+##                    count += 2
+##                elif count == 4:
+##                    point_label.grid(row = 2, column = 7)
+##                    point_label2.grid(row = 2, column = 8)
+##                    count = 0
+##            elif number == 6:
+##                point_label = Label(root, image = six)
+##                point_label2 = Label(root, image = six)
+##                if count == 0:
+##                    point_label.grid(row = 2, column = 3)
+##                    point_label2.grid(row = 2, column = 4)
+##                    count += 2
+##                elif count == 2:
+##                    point_label.grid(row = 2, column = 5)
+##                    point_label2.grid(row = 2, column = 6)
+##                    count += 2
+##                elif count == 4:
+##                    point_label.grid(row = 2, column = 7)
+##                    point_label2.grid(row = 2, column = 8)
+##                    count = 0
         
         ####end of three pairs
                     
@@ -146,7 +147,7 @@ def pairs():  ##function to determine if there are 3 pairs
         if roll.count(number) == 2:
             x += 1
             pair_numbers.append(number)
-    if x > 2:
+    if x > 3:
         return True
     else:
         return False
@@ -158,237 +159,2373 @@ def farkle():
     pass
 
 def rollAgain():
-    pass
+    global roll, number_of_dice, roll_turns, count
+    if number_of_dice == 0:
+        number_of_dice = 6
+    if number_of_dice == 6:
+        dice_button1.grid(row = 1, column = 1)
+        dice_button2.grid(row = 1, column = 2)
+        dice_button3.grid(row = 1, column = 3)
+        dice_button4.grid(row = 1, column = 4)
+        dice_button5.grid(row = 1, column = 5)
+        dice_button6.grid(row = 1, column = 6)
+    elif number_of_dice == 5:
+        dice_button1.grid(row = 1, column = 1)
+        dice_button2.grid(row = 1, column = 2)
+        dice_button3.grid(row = 1, column = 3)
+        dice_button4.grid(row = 1, column = 4)
+        dice_button5.grid(row = 1, column = 5)
+        dice_button6.grid_forget()
+    elif number_of_dice == 4:
+        dice_button1.grid(row = 1, column = 1)
+        dice_button2.grid(row = 1, column = 2)
+        dice_button3.grid(row = 1, column = 3)
+        dice_button4.grid(row = 1, column = 4)
+        dice_button5.grid_forget()
+        dice_button6.grid_forget()
+    elif number_of_dice == 3:
+        dice_button1.grid(row = 1, column = 1)
+        dice_button2.grid(row = 1, column = 2)
+        dice_button3.grid(row = 1, column = 3)
+        dice_button4.grid_forget()
+        dice_button5.grid_forget()
+        dice_button6.grid_forget()
+    elif number_of_dice == 2:
+        dice_button1.grid(row = 1, column = 1)
+        dice_button2.grid(row = 1, column = 2)
+        dice_button3.grid_forget()
+        dice_button4.grid_forget()
+        dice_button5.grid_forget()
+        dice_button6.grid_forget()
+    elif number_of_dice == 1:
+        dice_button1.grid(row = 1, column = 1)
+        dice_button2.grid_forget()
+        dice_button3.grid_forget()
+        dice_button4.grid_forget()
+        dice_button5.grid_forget()
+        dice_button6.grid_forget()
+
+    roll = dice_roll(number_of_dice)
+    roll_turns += 1
+    count = 0
+    
+    
 
 def keep_dice(button):
-    global count, number_of_dice 
-    if button["text"] == "1" and count == 0:
-        point_label = Label(root, image = one, text = "1")
-        point_label.grid(row = 2, column = 3)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
-        point_label = Label(root, image = two, text = "2")
-        point_label.grid(row = 2, column = 3)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
-        point_label = Label(root, image = three, text = "3")
-        point_label.grid(row = 2, column = 3)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
-        point_label = Label(root, image = four, text = "4")
-        point_label.grid(row = 2, column = 3)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "5" and count == 0:
-        point_label = Label(root, image = five, text = "5")
-        point_label.grid(row = 2, column = 3)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
-        point_label = Label(root, image = six, text = "6")
-        point_label.grid(row = 2, column = 3)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "1" and count == 1:
-        point_label2 = Label(root, image = one, text = "1")
-        point_label2.grid(row = 2, column = 4)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
-        point_label2 = Label(root, image = two, text = "2")
-        point_label2.grid(row = 2, column = 4)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
-        point_label2 = Label(root, image = three, text = "3")
-        point_label2.grid(row = 2, column = 4)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
-        point_label2 = Label(root, image = four, text = "4")
-        point_label2.grid(row = 2, column = 4)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "5" and count == 1:
-        point_label2 = Label(root, image = five, text = "5")
-        point_label2.grid(row = 2, column = 4)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
-        point_label2 = Label(root, image = six, text = "6")
-        point_label2.grid(row = 2, column = 4)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "1" and count == 2:
-        point_label3 = Label(root, image = one, text = "1")
-        point_label3.grid(row = 2, column = 5)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
-        point_label3 = Label(root, image = two, text = "2")
-        point_label3.grid(row = 2, column = 5)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
-        point_label2 = Label(root, image = three, text = "3")
-        point_label2.grid(row = 2, column = 5)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
-        point_label2 = Label(root, image = four, text = "4")
-        point_label2.grid(row = 2, column = 5)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "5" and count == 2:
-        point_label2 = Label(root, image = five, text = "5")
-        point_label2.grid(row = 2, column = 5)
-        count += 1
-        number_of_dice -= 1
-    elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
-        point_label2 = Label(root, image = six, text = "6")
-        point_label2.grid(row = 2, column = 5)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "1" and count == 3:
-        point_label2 = Label(root, image = one, text = "1")
-        point_label2.grid(row = 2, column = 6)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
-        point_label2 = Label(root, image = two, text = "2")
-        point_label2.grid(row = 2, column = 6)
-        count += 1
-        number_of_dice -= 1
-    elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
-        point_label2 = Label(root, image = three, text = "3")
-        point_label2.grid(row = 2, column = 6)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
-        point_label2 = Label(root, image = four, text = "4")
-        point_label2.grid(row = 2, column = 6)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "5" and count == 3:
-        point_label2 = Label(root, image = five, text = "5")
-        point_label2.grid(row = 2, column = 6)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
-        point_label2 = Label(root, image = six, text = "6")
-        point_label2.grid(row = 2, column = 6)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "1" and count == 4:
-        point_label2 = Label(root, image = one, text = "1")
-        point_label2.grid(row = 2, column = 7)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
-        point_label2 = Label(root, image = two, text = "2")
-        point_label2.grid(row = 2, column = 7)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
-        point_label2 = Label(root, image = three, text = "3")
-        point_label2.grid(row = 2, column = 7)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
-        point_label2 = Label(root, image = four, text = "4")
-        point_label2.grid(row = 2, column = 7)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "5" and count == 4:
-        point_label2 = Label(root, image = five, text = "5")
-        point_label.grid(row = 2, column = 7)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
-        point_label2 = Label(root, image = six, text = "6")
-        point_label2.grid(row = 2, column = 7)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "1" and count == 5:
-        point_label2 = Label(root, image = one, text = "1")
-        point_label2.grid(row = 2, column = 8)
-        count += 1
-        number_of_dice -= 1
-    elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
-        point_label2 = Label(root, image = two, text = "2")
-        point_label2.grid(row = 2, column = 8)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
-        point_label2 = Label(root, image = three, text = "3")
-        point_label2.grid(row = 2, column = 8)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
-        point_label2 = Label(root, image = four, text = "4")
-        point_label2.grid(row = 2, column = 8)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "5" and count == 5:
-        point_label2 = Label(root, image = five, text = "5")
-        point_label2.grid(row = 2, column = 8)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
-        point_label2 = Label(root, image = six, text = "6")
-        point_label2.grid(row = 2, column = 8)
-        count += 1
-        number_of_dice -= 1
-        button.grid_forget()
-    else:
-        messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
-    
-########end of normal roll
-    
+    global count, number_of_dice, labels
+    if roll_turns == 0:
+        if button["text"] == "1" and count == 0:
+            point_label = Label(root, image = one, text = "1")
+            point_label.grid(row = 2, column = 3)
+            labels.append(point_label)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label = Label(root, image = two, text = "2")
+            point_label.grid(row = 2, column = 3)
+            labels.append(point_label)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label = Label(root, image = three, text = "3")
+            point_label.grid(row = 2, column = 3)
+            labels.append(point_label)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label = Label(root, image = four, text = "4")
+            point_label.grid(row = 2, column = 3)
+            labels.append(point_label)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label = Label(root, image = five, text = "5")
+            point_label.grid(row = 2, column = 3)
+            labels.append(point_label)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label = Label(root, image = six, text = "6")
+            point_label.grid(row = 2, column = 3)
+            labels.append(point_label)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label2 = Label(root, image = one, text = "1")
+            point_label2.grid(row = 2, column = 4)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label2 = Label(root, image = two, text = "2")
+            point_label2.grid(row = 2, column = 4)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label2 = Label(root, image = three, text = "3")
+            point_label2.grid(row = 2, column = 4)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label2 = Label(root, image = four, text = "4")
+            point_label2.grid(row = 2, column = 4)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label2 = Label(root, image = five, text = "5")
+            point_label2.grid(row = 2, column = 4)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label2 = Label(root, image = six, text = "6")
+            point_label2.grid(row = 2, column = 4)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label3 = Label(root, image = one, text = "1")
+            point_label3.grid(row = 2, column = 5)
+            labels.append(point_label3)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label3 = Label(root, image = two, text = "2")
+            point_label3.grid(row = 2, column = 5)
+            labels.append(point_label3)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label2 = Label(root, image = three, text = "3")
+            point_label2.grid(row = 2, column = 5)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label2 = Label(root, image = four, text = "4")
+            point_label2.grid(row = 2, column = 5)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label = Label(root, image = five, text = "5")
+            point_label.grid(row = 2, column = 3)
+            labels.append(point_label)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label2 = Label(root, image = six, text = "6")
+            point_label2.grid(row = 2, column = 5)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label2 = Label(root, image = one, text = "1")
+            point_label2.grid(row = 2, column = 6)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label2 = Label(root, image = two, text = "2")
+            point_label2.grid(row = 2, column = 6)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label2 = Label(root, image = three, text = "3")
+            point_label2.grid(row = 2, column = 6)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label2 = Label(root, image = four, text = "4")
+            point_label2.grid(row = 2, column = 6)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label2 = Label(root, image = five, text = "5")
+            point_label2.grid(row = 2, column = 6)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label2 = Label(root, image = six, text = "6")
+            point_label2.grid(row = 2, column = 6)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label2 = Label(root, image = one, text = "1")
+            point_label2.grid(row = 2, column = 7)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label2 = Label(root, image = two, text = "2")
+            point_label2.grid(row = 2, column = 7)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label2 = Label(root, image = three, text = "3")
+            point_label2.grid(row = 2, column = 7)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label2 = Label(root, image = four, text = "4")
+            point_label2.grid(row = 2, column = 7)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label2 = Label(root, image = five, text = "5")
+            point_label2.grid(row = 2, column = 7)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label2 = Label(root, image = six, text = "6")
+            point_label2.grid(row = 2, column = 7)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label2 = Label(root, image = one, text = "1")
+            point_label2.grid(row = 2, column = 8)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label2 = Label(root, image = two, text = "2")
+            point_label2.grid(row = 2, column = 8)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label2 = Label(root, image = three, text = "3")
+            point_label2.grid(row = 2, column = 8)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label2 = Label(root, image = four, text = "4")
+            point_label2.grid(row = 2, column = 8)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label2 = Label(root, image = five, text = "5")
+            point_label2.grid(row = 2, column = 8)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label2 = Label(root, image = six, text = "6")
+            point_label2.grid(row = 2, column = 8)
+            labels.append(point_label2)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+            #####end of first roll
+    elif roll_turns == 1:
+        if button["text"] == "1" and count == 0:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 3, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 3, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 3, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 3, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 3, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 3, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 3, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 3, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 3, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 3, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 3, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 3, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 3, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 3, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 3, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 3, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 3, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 3, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 3, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 3, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 3, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 3, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 3, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 3, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 3, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 3, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 3, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 3, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 3, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 3, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 3, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 3, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 3, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 3, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 3, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 3, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+             #####end of second roll
+            ####start of third roll
+    elif roll_turns == 2:
+        if button["text"] == "1" and count == 0:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 4, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 4, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 4, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 4, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 4, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 4, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 4, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 4, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 4, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 4, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 4, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 4, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 4, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 4, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 4, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 4, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 4, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 4, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 4, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 4, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 4, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 4, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 4, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 4, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 4, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 4, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 4, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 4, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 4, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 4, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 4, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 4, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 4, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 4, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 4, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 4, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+            ####end of third roll
+    elif roll_turns == 3:
+        if button["text"] == "1" and count == 0:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 5, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 5, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 5, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 5, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 5, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 5, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 5, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 5, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 5, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 5, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 5, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 5, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 5, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 5, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 5, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 5, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 5, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 5, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 5, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 5, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 5, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 5, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 5, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 5, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 5, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 5, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 5, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 5, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 5, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 5, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 5, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 5, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 5, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 5, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 5, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 5, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+    ####end of fourth roll
+            ###start of fifth roll
+    elif roll_turns == 4:
+        if button["text"] == "1" and count == 0:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 6, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 6, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 6, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 6, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 6, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 6, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 6, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 6, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 6, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 6, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 6, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 6, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 6, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 6, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 6, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 6, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 6, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 6, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 6, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 6, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 6, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 6, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 6, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 6, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 6, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 6, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 6, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 6, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 6, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 6, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 6, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 6, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 6, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 6, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 6, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 6, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+    ####end of fifth roll
+    elif roll_turns == 5:
+        if button["text"] == "1" and count == 0:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 7, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 7, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 7, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 7, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 7, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 7, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 7, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 7, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 7, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 7, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 7, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 7, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 7, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 7, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 7, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 7, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 7, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 7, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 7, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 7, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 7, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 7, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 7, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 7, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 7, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 7, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 7, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 7, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 7, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 7, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 7, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 7, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 7, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 7, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 7, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 7, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+            ####end of sixth roll
+            ###beginning of seventh roll
+    elif roll_turns == 6:
+        if button["text"] == "1" and count == 0:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 8, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 8, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 8, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 8, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 8, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 8, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 8, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 8, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 8, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 8, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 8, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 8, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 8, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 8, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 8, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 8, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 8, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 8, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 8, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 8, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 8, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 8, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 8, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 8, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 8, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 8, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 8, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 8, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 8, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 8, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 8, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 8, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 8, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 8, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 8, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 8, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+            ####end of 7th roll
+            ###beginning of 8th roll
+    elif roll_turns == 7:
+        if button["text"] == "1" and count == 0:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 9, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 9, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 9, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 9, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 9, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 9, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 9, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 9, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 9, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 9, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 9, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 9, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 9, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 9, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 9, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 9, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 9, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 9, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 9, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 9, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 9, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 9, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 9, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 9, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 9, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 9, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 9, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 9, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 9, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 9, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 9, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 9, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 9, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 9, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 9, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 9, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+    ###end of eighth roll
+            ##beginning of 9th roll
+    elif roll_turns == 8:
+        if button["text"] == "1" and count == 0:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 10, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 0 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 10, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 0 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 10, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 0 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 10, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 0:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 10, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 0 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 10, column = 3)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 1:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 10, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 1 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 10, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 1 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 10, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 1 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 10, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 1:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 10, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 1 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 10, column = 4)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 2:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 10, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 2 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 10, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 2 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 10, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 2 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 10, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 2:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 10, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 10, column = 5)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 3:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 10, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 3 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 10, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "3" and count == 3 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 10, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 3 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 10, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 3:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 10, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 3 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 10, column = 6)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 4:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 10, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "2" and count == 4 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 10, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 4 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 10, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 4 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 10, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 4:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 10, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 4 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 10, column = 7)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "1" and count == 5:
+            point_label4 = Label(root, image = one, text = "1")
+            point_label4.grid(row = 10, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+        elif button["text"] == "2" and count == 5 and roll.count(2) >= 3:
+            point_label4 = Label(root, image = two, text = "2")
+            point_label4.grid(row = 10, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "3" and count == 5 and roll.count(3) >= 3:
+            point_label4 = Label(root, image = three, text = "3")
+            point_label4.grid(row = 10, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "4" and count == 5 and roll.count(4) >= 3:
+            point_label4 = Label(root, image = four, text = "4")
+            point_label4.grid(row = 10, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "5" and count == 5:
+            point_label4 = Label(root, image = five, text = "5")
+            point_label4.grid(row = 10, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        elif button["text"] == "6" and count == 5 and roll.count(6) >= 3:
+            point_label4 = Label(root, image = six, text = "6")
+            point_label4.grid(row = 10, column = 8)
+            labels.append(point_label4)
+            count += 1
+            number_of_dice -= 1
+            button.grid_forget()
+        else:
+            messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
+    ####end of ninth roll
+    print(labels)
 
-    
 def EndTurn():
-    global count, roll_turns
+    global count, roll_turns, labels, rolls, number_of_dice
+    for label in labels:
+        label.destroy()
     count = 0
     roll_turns = 0
-
-def dice_roll(number_of_dice):
-    for rolls in range(number_of_dice):
+    number_of_dice = 6
+    dice_button1.configure(image = mystery_dice)
+    dice_button2.configure(image = mystery_dice)
+    dice_button3.configure(image = mystery_dice)
+    dice_button4.configure(image = mystery_dice)
+    dice_button5.configure(image = mystery_dice)
+    dice_button6.configure(image = mystery_dice)
+    dice_button1.grid(row = 1, column = 1)
+    dice_button2.grid(row = 1, column = 2)
+    dice_button3.grid(row = 1, column = 3)
+    dice_button4.grid(row = 1, column = 4)
+    dice_button5.grid(row = 1, column = 5)
+    dice_button6.grid(row = 1, column = 6)
+    roll_button.configure(state = NORMAL)
+    roll_again.configure(state = DISABLED)
+    end_turn.configure(state = DISABLED)
+    rolls = []
+    labels = []
+    
+    
+def dice_roll(number):
+    for rolls in range(number):
         roll[rolls] = random.randint(1, 6)
         change_images()
     return roll
@@ -396,23 +2533,23 @@ def dice_roll(number_of_dice):
 def change_images():
     for number in roll:
         if roll[0] == 1:
-            dice_button.configure(image = one)
-            dice_button.configure(text = "1")
+            dice_button1.configure(image = one)
+            dice_button1.configure(text = "1")
         elif roll[0] == 2:
-            dice_button.configure(image = two)
-            dice_button.configure(text = "2")
+            dice_button1.configure(image = two)
+            dice_button1.configure(text = "2")
         elif roll[0] == 3:
-            dice_button.configure(image = three)
-            dice_button.configure(text = "3")
+            dice_button1.configure(image = three)
+            dice_button1.configure(text = "3")
         elif roll[0] == 4:
-            dice_button.configure(image = four)
-            dice_button.configure(text = "4")
+            dice_button1.configure(image = four)
+            dice_button1.configure(text = "4")
         elif roll[0] == 5:
-            dice_button.configure(image = five)
-            dice_button.configure(text = "5")
+            dice_button1.configure(image = five)
+            dice_button1.configure(text = "5")
         elif roll[0] == 6:
-            dice_button.configure(image = six)
-            dice_button.configure(text = "6")
+            dice_button1.configure(image = six)
+            dice_button1.configure(text = "6")
         if roll[1] == 1:
             dice_button2.configure(image = one)
             dice_button2.configure(text = "1")
@@ -507,7 +2644,7 @@ def change_images():
 roll_button = Button(root, height = 5, width = 20, text = "Roll", command = lambda : turn())
 end_turn = Button(root, height = 5, width = 20, text = "End Turn", state = DISABLED, command = lambda : EndTurn())
 roll_again = Button(root, height = 5, width = 20, text = "Roll Remaining Dice",  state = DISABLED, command = lambda : rollAgain())
-dice_button = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button))
+dice_button1 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button1))
 dice_button2 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button2))
 dice_button3 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button3))
 dice_button4 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button4))
@@ -517,36 +2654,14 @@ dice_button6 = Button(root, text = " ", image = mystery_dice, command = lambda :
 roll_button.grid(row = 2, column = 1, columnspan = 2)
 roll_again.grid(row = 3, column = 1, columnspan = 2)
 end_turn.grid(row = 4, column = 1, columnspan = 2)
-dice_button.grid(row = 1, column = 1)
+dice_button1.grid(row = 1, column = 1)
 dice_button2.grid(row = 1, column = 2)
 dice_button3.grid(row = 1, column = 3)
 dice_button4.grid(row = 1, column = 4)
 dice_button5.grid(row = 1, column = 5)
 dice_button6.grid(row = 1, column = 6)
+
 dice = [1, 2, 3, 4, 5, 6]
 
-
-            
-
-
-
-
-    
-points  = {
-    1 : 100,
-    5 : 50
-    }
-    
-def main():
-    print("Welcome to Farkle")
-    player1 = input("Please enter your name to get started: ")
-    print("Hello, " + player1)
-    player2 = input("What is player 2's name? ")
-    print("Hello, " + player2)
-    print("Player 1 will roll first, you will start with 6 dice")
-    print("Rolling...")
-    turn()
-    print("you must remove at least 1 die")
-    print("what die or dice would you like to keep for points?")
 
 
