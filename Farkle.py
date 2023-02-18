@@ -1,5 +1,4 @@
 import random
-import time
 from tkinter import *
 from tkinter import messagebox
 
@@ -7,7 +6,7 @@ from tkinter import messagebox
 
 root = Tk()
 root.title("Farkle")
-mystery_dice = PhotoImage(file = "MysteryDice.png")
+mystery_dice = PhotoImage(file = "question mark.png")
 count = 0
 roll_turns = 0
 number_of_dice = 6
@@ -586,6 +585,7 @@ def keep_dice(button):
             labels.append(point_label4)
             count += 1
             number_of_dice -= 1
+            button.grid_forget()
         elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
             point_label4 = Label(root, image = six, text = "6")
             point_label4.grid(row = 3, column = 5)
