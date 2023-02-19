@@ -136,6 +136,12 @@ def fourPair():
 def turn():
     global roll_turns, number_of_dice, count
     roll = dice_roll(number_of_dice)
+    dice_button1.configure(state = NORMAL)
+    dice_button2.configure(state = NORMAL)
+    dice_button3.configure(state = NORMAL)
+    dice_button4.configure(state = NORMAL)
+    dice_button5.configure(state = NORMAL)
+    dice_button6.configure(state = NORMAL)
     roll_button.configure(state = DISABLED)
     roll_again.configure(state = NORMAL)
     end_turn.configure(state = NORMAL)
@@ -166,13 +172,22 @@ def addPoints(label):
 def farkle():
     global roll
     x = 0
-    for numbers in roll[0: number_of_dice]:
-        if roll.count(numbers) >= 3:
-            x += 1
-        elif numbers == 1 or numbers == 5:
-            x += 1
-        elif pairs() == True or triplets() == True or straight() == True or fourPair() == True:
-            x += 1
+    if number_of_dice > 1:
+        for numbers in roll[0: number_of_dice - 1]:
+            if roll[0: number_of_dice - 1].count(numbers) >= 3:
+                x += 1
+            elif numbers == 1 or numbers == 5:
+                x += 1
+            elif pairs() == True or triplets() == True or straight() == True or fourPair() == True:
+                x += 1
+    else:
+         for numbers in roll[0: number_of_dice]:
+            if roll[0: number_of_dice - 1].count(numbers) >= 3:
+                x += 1
+            elif numbers == 1 or numbers == 5:
+                x += 1
+            elif pairs() == True or triplets() == True or straight() == True or fourPair() == True:
+                x += 1
     if x > 0:
         return False
     else:
@@ -254,12 +269,12 @@ def EndTurn():
     count = 0
     roll_turns = 0
     number_of_dice = 6
-    dice_button1.configure(image = mystery_dice)
-    dice_button2.configure(image = mystery_dice)
-    dice_button3.configure(image = mystery_dice)
-    dice_button4.configure(image = mystery_dice)
-    dice_button5.configure(image = mystery_dice)
-    dice_button6.configure(image = mystery_dice)
+    dice_button1.configure(image = mystery_dice, state = DISABLED)
+    dice_button2.configure(image = mystery_dice, state = DISABLED)
+    dice_button3.configure(image = mystery_dice, state = DISABLED)
+    dice_button4.configure(image = mystery_dice, state = DISABLED)
+    dice_button5.configure(image = mystery_dice, state = DISABLED)
+    dice_button6.configure(image = mystery_dice, state = DISABLED)
     dice_button1.grid(row = 1, column = 1)
     dice_button2.grid(row = 1, column = 2)
     dice_button3.grid(row = 1, column = 3)
@@ -393,13 +408,17 @@ def change_images():
 roll_button = Button(root, height = 5, width = 20, text = "Roll", command = lambda : turn())
 end_turn = Button(root, height = 5, width = 20, text = "End Turn", state = DISABLED, command = lambda : EndTurn())
 roll_again = Button(root, height = 5, width = 20, text = "Roll Remaining Dice",  state = DISABLED, command = lambda : rollAgain())
-dice_button1 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button1))
-dice_button2 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button2))
-dice_button3 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button3))
-dice_button4 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button4))
-dice_button5 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button5))
-dice_button6 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button6))
+dice_button1 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button1))
+dice_button2 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button2))
+dice_button3 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button3))
+dice_button4 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button4))
+dice_button5 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button5))
+dice_button6 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button6))
 points_box = Entry(root, width = 20,text = " ")
+p1points_box = Entry(root, width = 9, text = " ", font = ('14'))
+p2points_box = Entry(root, width = 9, text = " ", font = ('14'))
+p1points_label = Label(root, text = "Player 1 Points:", font = ('12'))
+p2points_label = Label(root, text = "Player 2 Points:", font = ('12'))
 
 roll_button.grid(row = 2, column = 1, columnspan = 2)
 roll_again.grid(row = 3, column = 1, columnspan = 2)
@@ -411,6 +430,10 @@ dice_button4.grid(row = 1, column = 4)
 dice_button5.grid(row = 1, column = 5)
 dice_button6.grid(row = 1, column = 6)
 points_box.grid(row = 2, column = 10)
+p1points_box.grid(row = 0, column = 2, columnspan = 3, pady = 5)
+p1points_label.grid(row = 0, column = 1, columnspan = 2)
+p2points_box.grid(row = 0, column = 6, columnspan = 3)
+p2points_label.grid(row = 0, column = 4, columnspan = 2, padx = 3)
 
 dice = [1, 2, 3, 4, 5, 6]
 
