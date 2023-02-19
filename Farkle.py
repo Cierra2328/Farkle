@@ -13,10 +13,12 @@ number_of_dice = 6
 roll = [1, 1, 1, 1, 1, 1]
 p1points = 0
 p2points = 0
-points = []
+turn_point = []
 pair_numbers = []
 labels = []
 turnCheck = 0
+numLabels = 0
+rolls = []
 root.geometry("900x900")
 one = PhotoImage(file = "One.png")
 two = PhotoImage(file = "Two.png")
@@ -25,6 +27,86 @@ four = PhotoImage(file = "Four.png")
 five = PhotoImage(file = "Five.png")
 six = PhotoImage(file = "Six.png")
 
+
+def points():
+    global labels, numLabels, rolls, turn_point
+    d1 = 0
+    d2 = 0
+    d3 = 0
+    d4 = 0
+    d5 = 0
+    d6 = 0
+    total = 0
+    turn_point = []
+    numLabels += len(labels)
+    points_box.delete(0, END)
+    for label in labels:
+        if label["text"] == "1":
+            d1 += 1
+        elif label["text"] == "2":
+            d2 += 1
+        elif label["text"] == "3":
+            d3 += 1
+        elif label["text"] == "4":
+            d4 += 1
+        elif label["text"] == "5":
+            d5 += 1
+        elif label["text"] == "6":
+            d6 += 1
+    if rolls == 1:
+        pairs()
+        straight()
+        triplets()
+        fourPair()
+    if d5 < 3:
+        turn_point.append(d5*50)
+    if d1 < 4:
+        turn_point.append(d1*100)
+    if d2 == 3:
+        if triplets() == False:
+            turn_point.append(200)
+    if d3 == 3:
+        if triplets() == False:
+            turn_point.append(300)
+    if d4 == 3:
+        if triplets() == False:
+            turn_point.append(400)
+    if d5 == 3:
+        if triplets() == False:
+            turn_point.append(500)
+    if d6 == 3:
+        if triplets() == False:
+            turn_point.append(600)
+    if d1 == 4 or d2 == 4 or d3 == 4 or d5 == 4 or d6 == 4:
+        if fourPair() == False:
+            turn_point.append(1000)
+    elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
+        turn_point.append(2000)
+    elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
+        turn_point.append(3000)
+
+    if straight() == True or pairs() == True or fourPair() == True:
+        turn_point.append(1500)
+    if triplets() == True:
+        turn_point.append(2500)
+    for point in turn_point:
+        total += point
+
+    points_box.insert(0, total)
+
+def straight():
+    return False
+
+def triplets():
+    return False
+    
+
+def fourPair():
+    return False
+    
+
+
+    
 def turn():
     global roll_turns, number_of_dice, count
     roll = dice_roll(number_of_dice)
@@ -140,16 +222,17 @@ def turn():
                     
 
 def pairs():  ##function to determine if there are 3 pairs
-    global roll, pair_numbers
-    x = 0
-    for number in roll:
-        if roll.count(number) == 2:
-            x += 1
-            pair_numbers.append(number)
-    if x > 3:
-        return True
-    else:
-        return False
+    pass
+##    global roll, pair_numbers
+##    x = 0
+##    for number in roll:
+##        if roll.count(number) == 2:
+##            x += 1
+##            pair_numbers.append(number)
+##    if x > 3:
+##        return True
+##    else:
+##        return False
 
 def addPoints(label):
     pass
@@ -327,7 +410,7 @@ def keep_dice(button):
             button.grid_forget()
         elif button["text"] == "5" and count == 2:
             point_label = Label(root, image = five, text = "5")
-            point_label.grid(row = 2, column = 3)
+            point_label.grid(row = 2, column = 5)
             labels.append(point_label)
             count += 1
             number_of_dice -= 1
@@ -840,6 +923,7 @@ def keep_dice(button):
             labels.append(point_label4)
             count += 1
             number_of_dice -= 1
+            button.grid_forget()
         elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
             point_label4 = Label(root, image = six, text = "6")
             point_label4.grid(row = 4, column = 5)
@@ -1093,6 +1177,7 @@ def keep_dice(button):
             labels.append(point_label4)
             count += 1
             number_of_dice -= 1
+            button.grid_forget()
         elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
             point_label4 = Label(root, image = six, text = "6")
             point_label4.grid(row = 5, column = 5)
@@ -1347,6 +1432,7 @@ def keep_dice(button):
             labels.append(point_label4)
             count += 1
             number_of_dice -= 1
+            button.grid_forget()
         elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
             point_label4 = Label(root, image = six, text = "6")
             point_label4.grid(row = 6, column = 5)
@@ -1600,6 +1686,7 @@ def keep_dice(button):
             labels.append(point_label4)
             count += 1
             number_of_dice -= 1
+            button.grid_forget()
         elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
             point_label4 = Label(root, image = six, text = "6")
             point_label4.grid(row = 7, column = 5)
@@ -1854,6 +1941,7 @@ def keep_dice(button):
             labels.append(point_label4)
             count += 1
             number_of_dice -= 1
+            button.grid_forget()
         elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
             point_label4 = Label(root, image = six, text = "6")
             point_label4.grid(row = 8, column = 5)
@@ -2108,6 +2196,7 @@ def keep_dice(button):
             labels.append(point_label4)
             count += 1
             number_of_dice -= 1
+            button.grid_forget()
         elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
             point_label4 = Label(root, image = six, text = "6")
             point_label4.grid(row = 9, column = 5)
@@ -2362,6 +2451,7 @@ def keep_dice(button):
             labels.append(point_label4)
             count += 1
             number_of_dice -= 1
+            button.grid_forget()
         elif button["text"] == "6" and count == 2 and roll.count(6) >= 3:
             point_label4 = Label(root, image = six, text = "6")
             point_label4.grid(row = 10, column = 5)
@@ -2496,7 +2586,7 @@ def keep_dice(button):
         else:
             messagebox.showerror("Farkle", "Remember the point system. You can only keep dice of numbers 1 and 5, unless the number has more than 2 of a kind")
     ####end of ninth roll
-    print(labels)
+    points()
 
 def EndTurn():
     global count, roll_turns, labels, rolls, number_of_dice
@@ -2650,6 +2740,7 @@ dice_button3 = Button(root, text = " ", image = mystery_dice, command = lambda :
 dice_button4 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button4))
 dice_button5 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button5))
 dice_button6 = Button(root, text = " ", image = mystery_dice, command = lambda : keep_dice(dice_button6))
+points_box = Entry(root, width = 20,text = " ")
 
 roll_button.grid(row = 2, column = 1, columnspan = 2)
 roll_again.grid(row = 3, column = 1, columnspan = 2)
@@ -2660,6 +2751,7 @@ dice_button3.grid(row = 1, column = 3)
 dice_button4.grid(row = 1, column = 4)
 dice_button5.grid(row = 1, column = 5)
 dice_button6.grid(row = 1, column = 6)
+points_box.grid(row = 2, column = 10)
 
 dice = [1, 2, 3, 4, 5, 6]
 
