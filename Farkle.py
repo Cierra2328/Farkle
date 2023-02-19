@@ -14,12 +14,14 @@ roll = [1, 1, 1, 1, 1, 1]
 p1points = 0
 p2points = 0
 turn_point = []
+round_points = 0
+turn_points = 0
 pair_numbers = []
 labels = []
 turnCheck = 0
 numLabels = 0
 rolls = []
-l = 0
+length = 0
 
 root.geometry("900x900")
 one = PhotoImage(file = "One.png")
@@ -31,7 +33,7 @@ six = PhotoImage(file = "Six.png")
 
 
 def points():
-    global labels, numLabels, rolls, turn_point, l
+    global labels, numLabels, rolls, turn_point, length, round_points, turn_points
     d1 = 0
     d2 = 0
     d3 = 0
@@ -41,8 +43,7 @@ def points():
     total = 0
     turn_point = []
     points_box.delete(0, END)
-    print(labels[2: len(labels)])
-    for i in range(l, len(labels)):
+    for i in range(length, len(labels)):
         if labels[i]["text"] == "1":
             d1 += 1
         elif labels[i]["text"] == "2":
@@ -93,8 +94,10 @@ def points():
         turn_point.append(2500)
     for point in turn_point:
         total += point
+    
 
-    points_box.insert(0, total)
+    points_box.insert(0, round_points + total)
+    turn_points = total
 
 def straight():
     return False
@@ -243,9 +246,9 @@ def farkle():
     pass
 
 def rollAgain():
-    global roll, number_of_dice, roll_turns, count, l
-    l = len(labels)
-    print(l)
+    global roll, number_of_dice, roll_turns, count, length, round_points, turn_points
+    length = len(labels)
+    round_points += turn_points
     if number_of_dice == 0:
         number_of_dice = 6
     if number_of_dice == 6:
