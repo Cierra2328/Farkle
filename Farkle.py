@@ -22,6 +22,7 @@ turnCheck = 0
 numLabels = 0
 rolls = []
 length = 0
+farkleCheck = 0
 
 root.geometry("900x900")
 one = PhotoImage(file = "One.png")
@@ -170,7 +171,7 @@ def addPoints(label):
     pass
     
 def farkle():
-    global roll
+    global roll, farkleCheck
     x = 0
     if number_of_dice > 1:
         for numbers in roll[0: number_of_dice - 1]:
@@ -191,6 +192,7 @@ def farkle():
     if x > 0:
         return False
     else:
+        farkleCheck += 1
         return True
     
     
@@ -257,15 +259,19 @@ def rollAgain():
 
 
 def EndTurn():
-    global count, roll_turns, labels, rolls, number_of_dice, turn, p1points, p2points
+    global count, roll_turns, labels, rolls, number_of_dice, turn, p1points, p2points, turnCheck, farkleCheck
     for label in labels:
         label.destroy()
-    if farkle() == False:
+    if farkleCheck == 0:
         if turnCheck % 2 == 0:
             p1points += round_points + turn_points
         else:
             p2points += round_points + turn_points
     points_box.delete(0, END)
+    p1points_box.delete(0, END)
+    p1points_box.insert(0, p1points)
+    p2points_box.delete(0, END)
+    p2points_box.insert(0, p2points)
     count = 0
     roll_turns = 0
     number_of_dice = 6
@@ -286,6 +292,9 @@ def EndTurn():
     end_turn.configure(state = DISABLED)
     rolls = []
     labels = []
+    round_points == 0
+    turnCheck += 1
+    farkleCheck = 0
     
     
 def dice_roll(number):
