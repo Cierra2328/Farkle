@@ -60,21 +60,21 @@ def points():
         turn_point.append(1500)
     elif triplets() == True:
         turn_point.append(2500)
-    elif d5 < 3:
+    if d5 < 3:
         turn_point.append(d5*50)
-    elif d1 < 4:
+    if d1 < 4:
         turn_point.append(d1*100)
-    elif d2 == 3:
+    if d2 == 3:
         turn_point.append(200)
-    elif d3 == 3:
+    if d3 == 3:
         turn_point.append(300)
-    elif d4 == 3:
+    if d4 == 3:
         turn_point.append(400)
-    elif d5 == 3:
+    if d5 == 3:
         turn_point.append(500)
-    elif d6 == 3:
+    if d6 == 3:
         turn_point.append(600)
-    elif d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
+    if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
         turn_point.append(1000)
     elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
         turn_point.append(2000)
@@ -206,7 +206,7 @@ def farkle():
             elif pairs() == True or triplets() == True or straight() == True or fourPair() == True:
                 x += 1
     else:
-         for numbers in roll[0: number_of_dice]:
+         for numbers in roll[0: 1]:
             if roll[0: number_of_dice - 1].count(numbers) >= 3:
                 x += 1
             elif numbers == 1 or numbers == 5:
@@ -279,10 +279,11 @@ def rollAgain():
     farkleCheck = 0
     fark = farkle()
     print(fark)
-    if farkle() == True:
+    print(roll)
+    if fark == True:
         messagebox.showwarning("Farkle", "Looks like you farkled! Your turn will end and you will receive no points.")
         roll_again.configure(state = DISABLED)
-    farkleCheck = 0
+    fark = False
     
     
 
