@@ -33,7 +33,7 @@ six = PhotoImage(file = "Six.png")
 
 
 def points():
-    global labels, numLabels, rolls, turn_point, length, round_points, turn_points
+    global labels, numLabels, turn_point, length, round_points, turn_points
     d1 = 0
     d2 = 0
     d3 = 0
@@ -60,26 +60,27 @@ def points():
         turn_point.append(1500)
     elif triplets() == True:
         turn_point.append(2500)
-    if d5 < 3:
-        turn_point.append(d5*50)
-    if d1 < 4:
-        turn_point.append(d1*100)
-    if d2 == 3:
-        turn_point.append(200)
-    if d3 == 3:
-        turn_point.append(300)
-    if d4 == 3:
-        turn_point.append(400)
-    if d5 == 3:
-        turn_point.append(500)
-    if d6 == 3:
-        turn_point.append(600)
-    if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
-        turn_point.append(1000)
-    elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
-        turn_point.append(2000)
-    elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
-        turn_point.append(3000)
+    else:
+        if d5 < 3:
+            turn_point.append(d5*50)
+        if d1 < 4:
+            turn_point.append(d1*100)
+        if d2 == 3:
+            turn_point.append(200)
+        if d3 == 3:
+            turn_point.append(300)
+        if d4 == 3:
+            turn_point.append(400)
+        if d5 == 3:
+            turn_point.append(500)
+        if d6 == 3:
+            turn_point.append(600)
+        if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
+            turn_point.append(1000)
+        elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
+            turn_point.append(2000)
+        elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
+            turn_point.append(3000)
 
     for point in turn_point:
         total += point
@@ -174,7 +175,6 @@ def turn():
     if farkleCheck == 1:
         messagebox.showwarning("Farkle", "Looks like you farkled! Your turn will end and you will receive no points.")
         roll_again.configure(state = DISABLED)
-    farkleCheck = 0
     points()
 
                     
@@ -222,11 +222,9 @@ def farkle():
     
 
 def rollAgain():
-    global roll, number_of_dice, roll_turns, count, length, round_points, turn_points
+    global roll, number_of_dice, roll_turns, count, length, round_points, turn_points, farkleCheck
     length = len(labels)
     round_points += turn_points
-    print(number_of_dice)
-    
     
     if number_of_dice == 0:
         number_of_dice = 6
@@ -276,14 +274,10 @@ def rollAgain():
     roll = dice_roll(number_of_dice)
     roll_turns += 1
     count = 0
-    farkleCheck = 0
-    fark = farkle()
-    print(fark)
-    print(roll)
-    if fark == True:
+    farkle()
+    if farkleCheck == 1:
         messagebox.showwarning("Farkle", "Looks like you farkled! Your turn will end and you will receive no points.")
         roll_again.configure(state = DISABLED)
-    fark = False
     
     
 
@@ -485,21 +479,21 @@ def keep_dice(button):
         count += 1
         number_of_dice -= 1
         button.grid_forget()
-    elif button["text"] == "2" and roll[0:number_of_dice].count(2) >= 3:
+    elif button["text"] == "2" and roll.count(2) >= 3:
         point_label = Label(root, image = two, text = "2")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
         count += 1
         number_of_dice -= 1
         button.grid_forget()
-    elif button["text"] == "3" and roll[0:number_of_dice].count(3) >= 3:
+    elif button["text"] == "3" and roll.count(3) >= 3:
         point_label = Label(root, image = three, text = "3")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
         count += 1
         number_of_dice -= 1
         button.grid_forget()
-    elif button["text"] == "4" and roll[0:number_of_dice].count(4) >= 3:
+    elif button["text"] == "4" and roll.count(4) >= 3:
         point_label = Label(root, image = four, text = "4")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
@@ -513,7 +507,7 @@ def keep_dice(button):
         count += 1
         number_of_dice -= 1
         button.grid_forget()
-    elif button["text"] == "6" and roll[0:number_of_dice].count(6) >= 3:
+    elif button["text"] == "6" and roll.count(6) >= 3:
         point_label = Label(root, image = six, text = "6")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
