@@ -10,7 +10,7 @@ mystery_dice = PhotoImage(file = "question mark.png")
 count = 0
 roll_turns = 0
 number_of_dice = 6
-roll = [1, 1, 1, 1, 1, 1]
+roll = [1, 2, 3, 4, 5, 6]
 p1points = 0
 p2points = 0
 turn_point = []
@@ -145,27 +145,27 @@ def turn():
         for i in roll:
             if i == 1:
                 point_label = Label(root, image = one, text = "1")
-                point_label.grid(row = 2, column = x + 2)
+                point_label.grid(row = roll_turns + 2, column = x + 2)
                 labels.append(point_label)
             elif i == 2:
                 point_label = Label(root, image = two, text = "2")
-                point_label.grid(row = 2, column = x + 2)
+                point_label.grid(row = roll_turns + 2, column = x + 2)
                 labels.append(point_label)
             elif i == 3:
                 point_label = Label(root, image = three, text = "3")
-                point_label.grid(row = 2, column = x + 2)
+                point_label.grid(row = roll_turns + 2, column = x + 2)
                 labels.append(point_label)
             elif i == 4:
                 point_label = Label(root, image = four, text = "4")
-                point_label.grid(row = 2, column = x + 2)
+                point_label.grid(row = roll_turns + 2, column = x + 2)
                 labels.append(point_label)
             elif i == 5:
                 point_label = Label(root, image = five, text = "5")
-                point_label.grid(row = 2, column = x + 2)
+                point_label.grid(row = roll_turns + 2, column = x + 2)
                 labels.append(point_label)
             elif i == 6:
                 point_label = Label(root, image = six, text = "6")
-                point_label.grid(row = 2, column = x + 2)
+                point_label.grid(row = roll_turns + 2, column = x + 2)
                 labels.append(point_label)
             x += 1
         points()
@@ -194,7 +194,7 @@ def farkle():
     x = 0
     if number_of_dice > 1:
         for numbers in roll[0: number_of_dice]:
-            if roll[0: number_of_dice - 1].count(numbers) >= 3:
+            if roll[0: number_of_dice].count(numbers) >= 3:
                 x += 1
             elif numbers == 1 or numbers == 5:
                 x += 1
@@ -202,9 +202,7 @@ def farkle():
                 x += 1
     else:
          for numbers in roll[0: 1]:
-            if roll[0: 1].count(numbers) >= 3:
-                x += 1
-            elif numbers == 1 or numbers == 5:
+            if numbers == 1 or numbers == 5:
                 x += 1
             elif pairs() == True or triplets() == True or straight() == True or fourPair() == True:
                 x += 1
@@ -267,11 +265,11 @@ def rollAgain():
         dice_button4.grid_forget()
         dice_button5.grid_forget()
         dice_button6.grid_forget()
-
-    roll = dice_roll(number_of_dice)
+    
     roll_turns += 1
     count = 0
-    farkle()
+    turn()
+
     
     
 
