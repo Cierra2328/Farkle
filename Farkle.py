@@ -57,35 +57,30 @@ def points():
         elif labels[i]["text"] == "6":
             d6 += 1
     if straight() == True or pairs() == True or fourPair() == True:
-        turn_point.append(1500)
+        total += 1500
     elif triplets() == True:
-        turn_point.append(2500)
+        total += 500
     else:
         if d5 < 3:
-            turn_point.append(d5*50)
+            total += d5*50
         if d1 < 4:
-            turn_point.append(d1*100)
+            total += d1*100
         if d2 == 3:
-            turn_point.append(200)
+            total += 200
         if d3 == 3:
-            turn_point.append(300)
+            total += 300
         if d4 == 3:
-            turn_point.append(400)
+            total += 400
         if d5 == 3:
-            turn_point.append(500)
+            total += 500
         if d6 == 3:
-            turn_point.append(600)
+            total += 600
         if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
-            turn_point.append(1000)
+            total += 1000
         elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
-            turn_point.append(2000)
+            total += 2000
         elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
-            turn_point.append(3000)
-
-    for point in turn_point:
-        total += point
-    
-    
+            total += 3000
     points_box.insert(0, round_points + total)
     turn_points = total
 
@@ -197,8 +192,10 @@ def pairs():  ##function to determine if there are 3 pairs
 def farkle():
     global roll, farkleCheck
     x = 0
+    print(number_of_dice)
+    print(roll[0:number_of_dice])
     if number_of_dice > 1:
-        for numbers in roll[0: number_of_dice - 1]:
+        for numbers in roll[0: number_of_dice]:
             if roll[0: number_of_dice - 1].count(numbers) >= 3:
                 x += 1
             elif numbers == 1 or numbers == 5:
@@ -207,7 +204,7 @@ def farkle():
                 x += 1
     else:
          for numbers in roll[0: 1]:
-            if roll[0: number_of_dice - 1].count(numbers) >= 3:
+            if roll[0: 1].count(numbers) >= 3:
                 x += 1
             elif numbers == 1 or numbers == 5:
                 x += 1
