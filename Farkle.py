@@ -15,7 +15,7 @@ p1points = 0
 p2points = 0
 turn_point = []
 round_points = 0
-turn_points = 0
+total = 0
 labels = []
 turnCheck = 0
 numLabels = 0
@@ -33,7 +33,7 @@ six = PhotoImage(file = "Six.png")
 
 
 def points():
-    global labels, numLabels, turn_point, length, round_points, turn_points
+    global labels, numLabels, turn_point, length, round_points, total
     d1 = 0
     d2 = 0
     d3 = 0
@@ -41,48 +41,51 @@ def points():
     d5 = 0
     d6 = 0
     total = 0
-    turn_point = []
     points_box.delete(0, END)
-    for i in range(length, len(labels)):
-        if labels[i]["text"] == "1":
-            d1 += 1
-        elif labels[i]["text"] == "2":
-            d2 += 1
-        elif labels[i]["text"] == "3":
-            d3 += 1
-        elif labels[i]["text"] == "4":
-            d4 += 1
-        elif labels[i]["text"] == "5":
-            d5 += 1
-        elif labels[i]["text"] == "6":
-            d6 += 1
+    if length <= len(labels):
+        print("yes")
+        for i in range(length, len(labels)):
+            if labels[i]["text"] == "1":
+                d1 += 1
+            elif labels[i]["text"] == "2":
+                d2 += 1
+            elif labels[i]["text"] == "3":
+                d3 += 1
+            elif labels[i]["text"] == "4":
+                d4 += 1
+            elif labels[i]["text"] == "5":
+                d5 += 1
+            elif labels[i]["text"] == "6":
+                d6 += 1
+    else:
+        length = 0
+        points_box.delete(0, END)
+        points()
     if straight() == True or pairs() == True or fourPair() == True:
         total += 1500
     elif triplets() == True:
         total += 500
-    else:
-        if d5 < 3:
-            total += d5*50
-        if d1 < 4:
-            total += d1*100
-        if d2 == 3:
-            total += 200
-        if d3 == 3:
-            total += 300
-        if d4 == 3:
-            total += 400
-        if d5 == 3:
-            total += 500
-        if d6 == 3:
-            total += 600
-        if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
-            total += 1000
-        elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
-            total += 2000
-        elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
-            total += 3000
+    if d5 < 3:
+        total += d5*50
+    if d1 < 4:
+        total += d1*100
+    if d2 == 3:
+        total += 200
+    if d3 == 3:
+        total += 300
+    if d4 == 3:
+        total += 400
+    if d5 == 3:
+        total += 500
+    if d6 == 3:
+        total += 600
+    if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
+        total += 1000
+    elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
+        total += 2000
+    elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
+        total += 3000
     points_box.insert(0, round_points + total)
-    turn_points = total
 
 def straight():
     global roll
@@ -138,7 +141,6 @@ def turn():
     roll_button.configure(state = DISABLED)
     roll_again.configure(state = NORMAL)
     end_turn.configure(state = NORMAL)
-    farkle()
     if straight() == True or pairs() == True or fourPair() == True or triplets() == True:
         x = 1
         for i in roll:
@@ -167,10 +169,9 @@ def turn():
                 point_label.grid(row = 2, column = x + 2)
                 labels.append(point_label)
             x += 1
-    if farkleCheck == 1:
-        messagebox.showwarning("Farkle", "Looks like you farkled! Your turn will end and you will receive no points.")
-        roll_again.configure(state = DISABLED)
-    points()
+        points()
+    farkle()
+    
 
                     
 
@@ -192,8 +193,6 @@ def pairs():  ##function to determine if there are 3 pairs
 def farkle():
     global roll, farkleCheck
     x = 0
-    print(number_of_dice)
-    print(roll[0:number_of_dice])
     if number_of_dice > 1:
         for numbers in roll[0: number_of_dice]:
             if roll[0: number_of_dice - 1].count(numbers) >= 3:
@@ -213,6 +212,8 @@ def farkle():
     if x > 0:
         return False
     else:
+        messagebox.showwarning("Farkle", "Looks like you farkled! Your turn will end and you will receive no points.")
+        roll_again.configure(state = DISABLED)
         farkleCheck += 1
         return True
     
@@ -221,7 +222,7 @@ def farkle():
 def rollAgain():
     global roll, number_of_dice, roll_turns, count, length, round_points, turn_points, farkleCheck
     length = len(labels)
-    round_points += turn_points
+    round_points += total
     
     if number_of_dice == 0:
         number_of_dice = 6
@@ -272,50 +273,79 @@ def rollAgain():
     roll_turns += 1
     count = 0
     farkle()
-    if farkleCheck == 1:
-        messagebox.showwarning("Farkle", "Looks like you farkled! Your turn will end and you will receive no points.")
-        roll_again.configure(state = DISABLED)
     
     
 
 
 def EndTurn():
-    global count, roll_turns, labels, rolls, number_of_dice, turn, p1points, p2points, turnCheck, farkleCheck, round_points
+    global count, roll_turns, labels, rolls, number_of_dice, turn_points, p1points, p2points, turnCheck, farkleCheck, round_points
     for label in labels:
         label.destroy()
     if farkleCheck == 0:
         if turnCheck % 2 == 0:
-            p1points += round_points + turn_points
+            p1points += round_points + total
         else:
-            p2points += round_points + turn_points
-    points_box.delete(0, END)
-    p1points_box.delete(0, END)
-    p1points_box.insert(0, p1points)
-    p2points_box.delete(0, END)
-    p2points_box.insert(0, p2points)
-    count = 0
-    roll_turns = 0
-    number_of_dice = 6
-    dice_button1.configure(image = mystery_dice, state = DISABLED)
-    dice_button2.configure(image = mystery_dice, state = DISABLED)
-    dice_button3.configure(image = mystery_dice, state = DISABLED)
-    dice_button4.configure(image = mystery_dice, state = DISABLED)
-    dice_button5.configure(image = mystery_dice, state = DISABLED)
-    dice_button6.configure(image = mystery_dice, state = DISABLED)
-    dice_button1.grid(row = 1, column = 1)
-    dice_button2.grid(row = 1, column = 2)
-    dice_button3.grid(row = 1, column = 3)
-    dice_button4.grid(row = 1, column = 4)
-    dice_button5.grid(row = 1, column = 5)
-    dice_button6.grid(row = 1, column = 6)
-    roll_button.configure(state = NORMAL)
-    roll_again.configure(state = DISABLED)
-    end_turn.configure(state = DISABLED)
-    rolls = []
-    labels = []
-    turnCheck += 1
-    farkleCheck = 0
-    round_points = 0
+            p2points += round_points + total
+        points_box.delete(0, END)
+        p1points_box.delete(0, END)
+        p1points_box.insert(0, p1points)
+        p2points_box.delete(0, END)
+        p2points_box.insert(0, p2points)
+        count = 0
+        roll_turns = 0
+        number_of_dice = 6
+        dice_button1.configure(image = mystery_dice, state = DISABLED)
+        dice_button2.configure(image = mystery_dice, state = DISABLED)
+        dice_button3.configure(image = mystery_dice, state = DISABLED)
+        dice_button4.configure(image = mystery_dice, state = DISABLED)
+        dice_button5.configure(image = mystery_dice, state = DISABLED)
+        dice_button6.configure(image = mystery_dice, state = DISABLED)
+        dice_button1.grid(row = 1, column = 1)
+        dice_button2.grid(row = 1, column = 2)
+        dice_button3.grid(row = 1, column = 3)
+        dice_button4.grid(row = 1, column = 4)
+        dice_button5.grid(row = 1, column = 5)
+        dice_button6.grid(row = 1, column = 6)
+        roll_button.configure(state = NORMAL)
+        roll_again.configure(state = DISABLED)
+        end_turn.configure(state = DISABLED)
+        rolls = []
+        labels = []
+        turnCheck += 1
+        farkleCheck = 0
+        round_points = 0
+        length = len(labels)
+    else:
+        points_box.delete(0, END)
+        p1points_box.delete(0, END)
+        p1points_box.insert(0, p1points)
+        p2points_box.delete(0, END)
+        p2points_box.insert(0, p2points)
+        count = 0
+        roll_turns = 0
+        number_of_dice = 6
+        dice_button1.configure(image = mystery_dice, state = DISABLED)
+        dice_button2.configure(image = mystery_dice, state = DISABLED)
+        dice_button3.configure(image = mystery_dice, state = DISABLED)
+        dice_button4.configure(image = mystery_dice, state = DISABLED)
+        dice_button5.configure(image = mystery_dice, state = DISABLED)
+        dice_button6.configure(image = mystery_dice, state = DISABLED)
+        dice_button1.grid(row = 1, column = 1)
+        dice_button2.grid(row = 1, column = 2)
+        dice_button3.grid(row = 1, column = 3)
+        dice_button4.grid(row = 1, column = 4)
+        dice_button5.grid(row = 1, column = 5)
+        dice_button6.grid(row = 1, column = 6)
+        roll_button.configure(state = NORMAL)
+        roll_again.configure(state = DISABLED)
+        end_turn.configure(state = DISABLED)
+        rolls = []
+        labels = []
+        turnCheck += 1
+        farkleCheck = 0
+        round_points = 0
+        length = len(labels)
+    
     
     
 def dice_roll(number):
@@ -514,5 +544,6 @@ def keep_dice(button):
     else:
         messagebox.showerror("Farkle", "You can only choose 1 or 5 unless the number has a count of greater than 2")
     points()
+    print(total)
 
 
