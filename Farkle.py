@@ -22,6 +22,7 @@ numLabels = 0
 rolls = []
 length = 0
 farkleCheck = 0
+dice_count = 0
 
 root.geometry("1000x900")
 one = PhotoImage(file = "One.png")
@@ -172,7 +173,13 @@ def turn():
     farkle()
     
 
-                    
+def rollCheck():
+    global number_of_dice, roll_turns, dice_count
+    if dice_count > 0:
+        return True
+    else:
+        messagebox.showerror("Farkle", "You must take at least one dice from the roll")
+        return False
 
 def pairs():  ##function to determine if there are 3 pairs
     global roll
@@ -217,60 +224,63 @@ def farkle():
     
 
 def rollAgain():
-    global roll, number_of_dice, roll_turns, count, length, round_points, turn_points, farkleCheck
+    global roll, number_of_dice, roll_turns, count, length, round_points, turn_points, farkleCheck, dice_count
     length = len(labels)
     round_points += total
-    
-    if number_of_dice == 0:
-        number_of_dice = 6
-    if number_of_dice == 6:
-        dice_button1.grid(row = 1, column = 1)
-        dice_button2.grid(row = 1, column = 2)
-        dice_button3.grid(row = 1, column = 3)
-        dice_button4.grid(row = 1, column = 4)
-        dice_button5.grid(row = 1, column = 5)
-        dice_button6.grid(row = 1, column = 6)
-    elif number_of_dice == 5:
-        dice_button1.grid(row = 1, column = 1)
-        dice_button2.grid(row = 1, column = 2)
-        dice_button3.grid(row = 1, column = 3)
-        dice_button4.grid(row = 1, column = 4)
-        dice_button5.grid(row = 1, column = 5)
-        dice_button6.grid_forget()
-    elif number_of_dice == 4:
-        dice_button1.grid(row = 1, column = 1)
-        dice_button2.grid(row = 1, column = 2)
-        dice_button3.grid(row = 1, column = 3)
-        dice_button4.grid(row = 1, column = 4)
-        dice_button5.grid_forget()
-        dice_button6.grid_forget()
-    elif number_of_dice == 3:
-        dice_button1.grid(row = 1, column = 1)
-        dice_button2.grid(row = 1, column = 2)
-        dice_button3.grid(row = 1, column = 3)
-        dice_button4.grid_forget()
-        dice_button5.grid_forget()
-        dice_button6.grid_forget()
-    elif number_of_dice == 2:
-        dice_button1.grid(row = 1, column = 1)
-        dice_button2.grid(row = 1, column = 2)
-        dice_button3.grid_forget()
-        dice_button4.grid_forget()
-        dice_button5.grid_forget()
-        dice_button6.grid_forget()
-    elif number_of_dice == 1:
-        dice_button1.grid(row = 1, column = 1)
-        dice_button2.grid_forget()
-        dice_button3.grid_forget()
-        dice_button4.grid_forget()
-        dice_button5.grid_forget()
-        dice_button6.grid_forget()
-    
-    roll_turns += 1
-    count = 0
-    turn()
+    print(dice_count)
+    if rollCheck() == True:
+        dice_count = 0
+        if number_of_dice == 0:
+            number_of_dice = 6
+        if number_of_dice == 6:
+            dice_button1.grid(row = 1, column = 1)
+            dice_button2.grid(row = 1, column = 2)
+            dice_button3.grid(row = 1, column = 3)
+            dice_button4.grid(row = 1, column = 4)
+            dice_button5.grid(row = 1, column = 5)
+            dice_button6.grid(row = 1, column = 6)
+        elif number_of_dice == 5:
+            dice_button1.grid(row = 1, column = 1)
+            dice_button2.grid(row = 1, column = 2)
+            dice_button3.grid(row = 1, column = 3)
+            dice_button4.grid(row = 1, column = 4)
+            dice_button5.grid(row = 1, column = 5)
+            dice_button6.grid_forget()
+        elif number_of_dice == 4:
+            dice_button1.grid(row = 1, column = 1)
+            dice_button2.grid(row = 1, column = 2)
+            dice_button3.grid(row = 1, column = 3)
+            dice_button4.grid(row = 1, column = 4)
+            dice_button5.grid_forget()
+            dice_button6.grid_forget()
+        elif number_of_dice == 3:
+            dice_button1.grid(row = 1, column = 1)
+            dice_button2.grid(row = 1, column = 2)
+            dice_button3.grid(row = 1, column = 3)
+            dice_button4.grid_forget()
+            dice_button5.grid_forget()
+            dice_button6.grid_forget()
+        elif number_of_dice == 2:
+            dice_button1.grid(row = 1, column = 1)
+            dice_button2.grid(row = 1, column = 2)
+            dice_button3.grid_forget()
+            dice_button4.grid_forget()
+            dice_button5.grid_forget()
+            dice_button6.grid_forget()
+        elif number_of_dice == 1:
+            dice_button1.grid(row = 1, column = 1)
+            dice_button2.grid_forget()
+            dice_button3.grid_forget()
+            dice_button4.grid_forget()
+            dice_button5.grid_forget()
+            dice_button6.grid_forget()
+        
+        roll_turns += 1
+        count = 0
+        turn()
+        
 
-    
+        
     
 
 
@@ -312,6 +322,7 @@ def EndTurn():
         farkleCheck = 0
         round_points = 0
         length = len(labels)
+        dice_count = 0
     else:
         points_box.delete(0, END)
         p1points_box.delete(0, END)
@@ -342,6 +353,7 @@ def EndTurn():
         farkleCheck = 0
         round_points = 0
         length = len(labels)
+        dice_count = 0
     
     
     
@@ -495,7 +507,7 @@ p2points_label.grid(row = 0, column = 4, columnspan = 2, padx = 3)
 dice = [1, 2, 3, 4, 5, 6]
 
 def keep_dice(button):
-    global count, number_of_dice, labels
+    global count, number_of_dice, labels, dice_count
     if button["text"] == "1":
         point_label = Label(root, image = one, text = "1")
         point_label.grid(row = roll_turns + 2, column = count + 3)
@@ -541,6 +553,7 @@ def keep_dice(button):
     else:
         messagebox.showerror("Farkle", "You can only choose 1 or 5 unless the number has a count of greater than 2")
     points()
+    dice_count += 1
     
 
 
