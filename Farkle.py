@@ -43,7 +43,6 @@ def points():
     total = 0
     points_box.delete(0, END)
     if length <= len(labels):
-        print("yes")
         for i in range(length, len(labels)):
             if labels[i]["text"] == "1":
                 d1 += 1
@@ -57,35 +56,35 @@ def points():
                 d5 += 1
             elif labels[i]["text"] == "6":
                 d6 += 1
+        if straight() == True or pairs() == True or fourPair() == True:
+            total += 1500
+        elif triplets() == True:
+            total += 500
+        if d5 < 3:
+            total += d5*50
+        if d1 < 4:
+            total += d1*100
+        if d2 == 3:
+            total += 200
+        if d3 == 3:
+            total += 300
+        if d4 == 3:
+            total += 400
+        if d5 == 3:
+            total += 500
+        if d6 == 3:
+            total += 600
+        if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
+            total += 1000
+        elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
+            total += 2000
+        elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
+            total += 3000
+        points_box.insert(0, round_points + total)
     else:
         length = 0
-        points_box.delete(0, END)
+        round_points = 0
         points()
-    if straight() == True or pairs() == True or fourPair() == True:
-        total += 1500
-    elif triplets() == True:
-        total += 500
-    if d5 < 3:
-        total += d5*50
-    if d1 < 4:
-        total += d1*100
-    if d2 == 3:
-        total += 200
-    if d3 == 3:
-        total += 300
-    if d4 == 3:
-        total += 400
-    if d5 == 3:
-        total += 500
-    if d6 == 3:
-        total += 600
-    if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
-        total += 1000
-    elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
-        total += 2000
-    elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
-        total += 3000
-    points_box.insert(0, round_points + total)
 
 def straight():
     global roll
@@ -544,6 +543,6 @@ def keep_dice(button):
     else:
         messagebox.showerror("Farkle", "You can only choose 1 or 5 unless the number has a count of greater than 2")
     points()
-    print(total)
+    
 
 
