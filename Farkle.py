@@ -61,26 +61,27 @@ def points():
             total += 1500
         elif triplets() == True:
             total += 500
-        if d5 < 3:
-            total += d5*50
-        if d1 < 4:
-            total += d1*100
-        if d2 == 3:
-            total += 200
-        if d3 == 3:
-            total += 300
-        if d4 == 3:
-            total += 400
-        if d5 == 3:
-            total += 500
-        if d6 == 3:
-            total += 600
-        if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
-            total += 1000
-        elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
-            total += 2000
-        elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
-            total += 3000
+        else:
+            if d5 < 3:
+                total += d5*50
+            if d1 < 4:
+                total += d1*100
+            if d2 == 3:
+                total += 200
+            if d3 == 3:
+                total += 300
+            if d4 == 3:
+                total += 400
+            if d5 == 3:
+                total += 500
+            if d6 == 3:
+                total += 600
+            if d1 == 4 or d2 == 4 or d3 == 4 or d4 == 4 or d5 == 4 or d6 == 4:
+                total += 1000
+            elif d1 == 5 or d2 == 5 or d3 == 5 or d4 == 5 or d5 == 5 or d6 == 5:
+                total += 2000
+            elif d1 == 6 or d2 == 6 or d3 == 6 or d4 == 6 or d5 == 6 or d6 == 6:
+                total += 3000
         points_box.insert(0, round_points + total)
     else:
         length = 0
@@ -90,7 +91,7 @@ def points():
 def straight():
     global roll
     roll_sorted = sorted(roll)
-    if roll_sorted == [1, 2, 3, 4, 5, 6] and number_of_dice >= 5:
+    if roll_sorted == [1, 2, 3, 4, 5, 6] and number_of_dice == 6:
         return True
     else:
         return False
@@ -488,6 +489,7 @@ p1points_box = Entry(root, width = 9, text = " 0 ", font = ('14'))
 p2points_box = Entry(root, width = 9, text = "0 ", font = ('14'))
 p1points_label = Label(root, text = "Player 1 Points:", font = ('12'))
 p2points_label = Label(root, text = "Player 2 Points:", font = ('12'))
+points_box_label = Label(root, text = "Possible Points:", font = ('10'))
 
 roll_button.grid(row = 2, column = 1, columnspan = 2)
 roll_again.grid(row = 3, column = 1, columnspan = 2)
@@ -498,11 +500,13 @@ dice_button3.grid(row = 1, column = 3)
 dice_button4.grid(row = 1, column = 4)
 dice_button5.grid(row = 1, column = 5)
 dice_button6.grid(row = 1, column = 6)
-points_box.grid(row = 2, column = 10)
+points_box.grid(row = 2, column = 11)
 p1points_box.grid(row = 0, column = 2, columnspan = 3, pady = 5, padx = 3)
 p1points_label.grid(row = 0, column = 1, columnspan = 2)
 p2points_box.grid(row = 0, column = 6, columnspan = 3)
 p2points_label.grid(row = 0, column = 4, columnspan = 2, padx = 3)
+points_box_label.grid(row = 2, column = 10)
+
 
 dice = [1, 2, 3, 4, 5, 6]
 
