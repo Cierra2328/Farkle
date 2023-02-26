@@ -131,7 +131,7 @@ def fourPair():
 
     
 def turn():
-    global roll_turns, number_of_dice, count, farkleCheck
+    global roll_turns, number_of_dice, count, farkleCheck, dice_count
     roll = dice_roll(number_of_dice)
     dice_button1.configure(state = NORMAL)
     dice_button2.configure(state = NORMAL)
@@ -144,6 +144,7 @@ def turn():
     end_turn.configure(state = NORMAL)
     if straight() == True or pairs() == True or fourPair() == True or triplets() == True:
         x = 1
+        dice_count += 1
         for i in roll:
             if i == 1:
                 point_label = Label(root, image = one, text = "1")
