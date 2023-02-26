@@ -24,7 +24,7 @@ length = 0
 farkleCheck = 0
 dice_count = 0
 
-root.geometry("1000x900")
+root.geometry("1100x900")
 one = PhotoImage(file = "One.png")
 two = PhotoImage(file = "Two.png")
 three = PhotoImage(file = "Three.png")
@@ -228,7 +228,6 @@ def rollAgain():
     global roll, number_of_dice, roll_turns, count, length, round_points, turn_points, farkleCheck, dice_count
     length = len(labels)
     round_points += total
-    print(dice_count)
     if rollCheck() == True:
         dice_count = 0
         if number_of_dice == 0:
@@ -484,7 +483,7 @@ dice_button3 = Button(root, text = " ", image = mystery_dice, state = DISABLED, 
 dice_button4 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button4))
 dice_button5 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button5))
 dice_button6 = Button(root, text = " ", image = mystery_dice, state = DISABLED, command = lambda : keep_dice(dice_button6))
-points_box = Entry(root, width = 20,text = "0   ")
+points_box = Entry(root, width = 10,text = "0   ", font = ('10'))
 p1points_box = Entry(root, width = 9, text = " 0 ", font = ('14'))
 p2points_box = Entry(root, width = 9, text = "0 ", font = ('14'))
 p1points_label = Label(root, text = "Player 1 Points:", font = ('12'))
@@ -501,10 +500,10 @@ dice_button4.grid(row = 1, column = 4)
 dice_button5.grid(row = 1, column = 5)
 dice_button6.grid(row = 1, column = 6)
 points_box.grid(row = 2, column = 11)
-p1points_box.grid(row = 0, column = 2, columnspan = 3, pady = 5, padx = 3)
+p1points_box.grid(row = 0, column = 3, columnspan = 2)
 p1points_label.grid(row = 0, column = 1, columnspan = 2)
-p2points_box.grid(row = 0, column = 6, columnspan = 3)
-p2points_label.grid(row = 0, column = 4, columnspan = 2, padx = 3)
+p2points_box.grid(row = 0, column = 7, columnspan = 3)
+p2points_label.grid(row = 0, column = 5, columnspan = 2)
 points_box_label.grid(row = 2, column = 10)
 
 
