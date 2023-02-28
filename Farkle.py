@@ -324,6 +324,14 @@ def EndTurn():
         round_points = 0
         length = len(labels)
         dice_count = 0
+        if turnCheck % 2 == 0:
+            turn_label.configure(text = "Player 1's Turn")
+            p1points_label.configure(bg = "cyan")
+            p2points_label.configure(bg = "light grey")
+        else:
+            turn_label.configure(text = "Player 2's Turn")
+            p2points_label.configure(bg = "cyan")
+            p1points_label.configure(bg = "light grey")
     else:
         points_box.delete(0, END)
         p1points_box.delete(0, END)
@@ -355,6 +363,14 @@ def EndTurn():
         round_points = 0
         length = len(labels)
         dice_count = 0
+        if turnCheck % 2 == 0:
+            turn_label.configure(text = "Player 1's Turn")
+            p1points_label.configure(bg = "cyan")
+            p2points_label.configure(bg = "light grey")
+        else:
+            turn_label.configure(text = "Player 2's Turn")
+            p2points_label.configure(bg = "cyan")
+            p1points_label.configure(bg = "light grey")
     
     
     
@@ -487,9 +503,10 @@ dice_button6 = Button(root, text = " ", image = mystery_dice, state = DISABLED, 
 points_box = Entry(root, width = 10,text = "0   ", font = ('10'))
 p1points_box = Entry(root, width = 9, text = " 0 ", font = ('14'))
 p2points_box = Entry(root, width = 9, text = "0 ", font = ('14'))
-p1points_label = Label(root, text = "Player 1 Points:", font = ('12'))
-p2points_label = Label(root, text = "Player 2 Points:", font = ('12'))
+p1points_label = Label(root, text = "Player 1 Points:", font = ('12'), bg = "cyan")
+p2points_label = Label(root, text = "Player 2 Points:", font = ('12'), bg = "light grey")
 points_box_label = Label(root, text = "Possible Points:", font = ('10'))
+turn_label = Label(root, text = "Player 1's Turn", font = ('12'))
 
 roll_button.grid(row = 2, column = 1, columnspan = 2)
 roll_again.grid(row = 3, column = 1, columnspan = 2)
@@ -506,6 +523,7 @@ p1points_label.grid(row = 0, column = 1, columnspan = 2)
 p2points_box.grid(row = 0, column = 7, columnspan = 3)
 p2points_label.grid(row = 0, column = 5, columnspan = 2)
 points_box_label.grid(row = 2, column = 10)
+turn_label.grid(row = 3, column = 10)
 
 
 dice = [1, 2, 3, 4, 5, 6]
