@@ -23,6 +23,8 @@ rolls = []
 length = 0
 farkleCheck = 0
 dice_count = 0
+p1Win = 0
+p2Win = 0
 
 root.geometry("1100x900")
 one = PhotoImage(file = "One.png")
@@ -87,6 +89,13 @@ def points():
         length = 0
         round_points = 0
         points()
+
+def win():
+    global p1Win, p2Win
+    if p1points >= 10000:
+        p1Win += 1
+    elif p2points >= 10000:
+        p2Win += 1
 
 def straight():
     global roll
@@ -302,36 +311,58 @@ def EndTurn():
         count = 0
         roll_turns = 0
         number_of_dice = 6
-        dice_button1.configure(image = mystery_dice, state = DISABLED)
-        dice_button2.configure(image = mystery_dice, state = DISABLED)
-        dice_button3.configure(image = mystery_dice, state = DISABLED)
-        dice_button4.configure(image = mystery_dice, state = DISABLED)
-        dice_button5.configure(image = mystery_dice, state = DISABLED)
-        dice_button6.configure(image = mystery_dice, state = DISABLED)
-        dice_button1.grid(row = 1, column = 1)
-        dice_button2.grid(row = 1, column = 2)
-        dice_button3.grid(row = 1, column = 3)
-        dice_button4.grid(row = 1, column = 4)
-        dice_button5.grid(row = 1, column = 5)
-        dice_button6.grid(row = 1, column = 6)
-        roll_button.configure(state = NORMAL)
-        roll_again.configure(state = DISABLED)
-        end_turn.configure(state = DISABLED)
-        rolls = []
-        labels = []
-        turnCheck += 1
-        farkleCheck = 0
-        round_points = 0
-        length = len(labels)
-        dice_count = 0
-        if turnCheck % 2 == 0:
-            turn_label.configure(text = "Player 1's Turn")
-            p1points_label.configure(bg = "cyan")
-            p2points_label.configure(bg = "light grey")
+        win()
+        if p1Win > 0:
+            messagebox.showinfo("Farkle", "Player 1 Wins!")
+            dice_button1.configure(image = mystery_dice, state = DISABLED)
+            dice_button2.configure(image = mystery_dice, state = DISABLED)
+            dice_button3.configure(image = mystery_dice, state = DISABLED)
+            dice_button4.configure(image = mystery_dice, state = DISABLED)
+            dice_button5.configure(image = mystery_dice, state = DISABLED)
+            dice_button6.configure(image = mystery_dice, state = DISABLED)
+            roll_again.configure(state = DISABLED)
+            end_turn.configure(state = DISABLED)
+        elif p2Win > 0:
+            messagebox.showinfo("Farkle", "Player 2 Wins!")
+            dice_button1.configure(image = mystery_dice, state = DISABLED)
+            dice_button2.configure(image = mystery_dice, state = DISABLED)
+            dice_button3.configure(image = mystery_dice, state = DISABLED)
+            dice_button4.configure(image = mystery_dice, state = DISABLED)
+            dice_button5.configure(image = mystery_dice, state = DISABLED)
+            dice_button6.configure(image = mystery_dice, state = DISABLED)
+            roll_again.configure(state = DISABLED)
+            end_turn.configure(state = DISABLED)
         else:
-            turn_label.configure(text = "Player 2's Turn")
-            p2points_label.configure(bg = "cyan")
-            p1points_label.configure(bg = "light grey")
+            dice_button1.configure(image = mystery_dice, state = DISABLED)
+            dice_button2.configure(image = mystery_dice, state = DISABLED)
+            dice_button3.configure(image = mystery_dice, state = DISABLED)
+            dice_button4.configure(image = mystery_dice, state = DISABLED)
+            dice_button5.configure(image = mystery_dice, state = DISABLED)
+            dice_button6.configure(image = mystery_dice, state = DISABLED)
+            dice_button1.grid(row = 1, column = 1)
+            dice_button2.grid(row = 1, column = 2)
+            dice_button3.grid(row = 1, column = 3)
+            dice_button4.grid(row = 1, column = 4)
+            dice_button5.grid(row = 1, column = 5)
+            dice_button6.grid(row = 1, column = 6)
+            roll_button.configure(state = NORMAL)
+            roll_again.configure(state = DISABLED)
+            end_turn.configure(state = DISABLED)
+            rolls = []
+            labels = []
+            turnCheck += 1
+            farkleCheck = 0
+            round_points = 0
+            length = len(labels)
+            dice_count = 0
+            if turnCheck % 2 == 0:
+                turn_label.configure(text = "Player 1's Turn")
+                p1points_label.configure(bg = "cyan")
+                p2points_label.configure(bg = "light grey")
+            else:
+                turn_label.configure(text = "Player 2's Turn")
+                p2points_label.configure(bg = "cyan")
+                p1points_label.configure(bg = "light grey")
     else:
         points_box.delete(0, END)
         p1points_box.delete(0, END)
