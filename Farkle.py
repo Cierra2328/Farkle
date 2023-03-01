@@ -26,13 +26,14 @@ dice_count = 0
 p1Win = 0
 p2Win = 0
 
-root.geometry("1100x900")
+root.geometry("1300x900")
 one = PhotoImage(file = "One.png")
 two = PhotoImage(file = "Two.png")
 three = PhotoImage(file = "Three.png")
 four = PhotoImage(file = "Four.png")
 five = PhotoImage(file = "Five.png")
 six = PhotoImage(file = "Six.png")
+scorecard = PhotoImage(file = "farkle scoring.png")
 
 
 def points():
@@ -538,10 +539,11 @@ p1points_label = Label(root, text = "Player 1 Points:", font = ('12'), bg = "cya
 p2points_label = Label(root, text = "Player 2 Points:", font = ('12'), bg = "light grey")
 points_box_label = Label(root, text = "Possible Points:", font = ('10'))
 turn_label = Label(root, text = "Player 1's Turn", font = ('12'))
+scoring_label = Label(root, image = scorecard)
 
 roll_button.grid(row = 2, column = 1, columnspan = 2)
 roll_again.grid(row = 3, column = 1, columnspan = 2)
-end_turn.grid(row = 4, column = 1, columnspan = 2)
+end_turn.grid(row = 4, column = 1, columnspan = 2, sticky = N)
 dice_button1.grid(row = 1, column = 1)
 dice_button2.grid(row = 1, column = 2)
 dice_button3.grid(row = 1, column = 3)
@@ -555,6 +557,7 @@ p2points_box.grid(row = 0, column = 7, columnspan = 3)
 p2points_label.grid(row = 0, column = 5, columnspan = 2)
 points_box_label.grid(row = 2, column = 10)
 turn_label.grid(row = 3, column = 10)
+scoring_label.grid(row = 4, rowspan = 4, column = 10, columnspan = 5)
 
 
 dice = [1, 2, 3, 4, 5, 6]
