@@ -354,7 +354,7 @@ def EndTurn():
             turnCheck += 1
             farkleCheck = 0
             round_points = 0
-            length = len(labels)
+            length = 0
             dice_count = 0
             if turnCheck % 2 == 0:
                 turn_label.configure(text = "Player 1's Turn")
@@ -393,7 +393,7 @@ def EndTurn():
         turnCheck += 1
         farkleCheck = 0
         round_points = 0
-        length = len(labels)
+        length = 0
         dice_count = 0
         if turnCheck % 2 == 0:
             turn_label.configure(text = "Player 1's Turn")
