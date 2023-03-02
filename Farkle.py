@@ -25,6 +25,7 @@ farkleCheck = 0
 dice_count = 0
 p1Win = 0
 p2Win = 0
+buttons = []
 
 root.geometry("1300x900")
 one = PhotoImage(file = "One.png")
@@ -236,9 +237,10 @@ def farkle():
     
 
 def rollAgain():
-    global roll, number_of_dice, roll_turns, count, length, round_points, turn_points, farkleCheck, dice_count
+    global roll, number_of_dice, roll_turns, count, length, round_points, turn_points, farkleCheck, dice_count, buttons
     length = len(labels)
     round_points += total
+    buttons = []
     if rollCheck() == True:
         dice_count = 0
         if number_of_dice == 0:
@@ -290,10 +292,23 @@ def rollAgain():
         count = 0
         turn()
         
-
-        
+def resetDice():
+    global round_points, total, buttons, dice_count, count, number_of_dice, length, labels
+    num_of_labels = len(labels) - length
+    i = length
+    points_box.delete(0, END)
+    points_box.insert(0, round_points)
+    for label in range(num_of_labels):
+        i += label
+        labels[length + label].destroy()
+        del labels[i]   
+    for button in buttons:
+        button.grid()
     
-
+    number_of_dice += count
+    dice_count = 0
+    count = 0
+    buttons = []
 
 def EndTurn():
     global count, roll_turns, labels, rolls, number_of_dice, turn_points, p1points, p2points, turnCheck, farkleCheck, round_points
@@ -351,11 +366,13 @@ def EndTurn():
             end_turn.configure(state = DISABLED)
             rolls = []
             labels = []
+            buttons = []
             turnCheck += 1
             farkleCheck = 0
             round_points = 0
-            length = len(labels)
+            length = 0
             dice_count = 0
+            buttons = []
             if turnCheck % 2 == 0:
                 turn_label.configure(text = "Player 1's Turn")
                 p1points_label.configure(bg = "cyan")
@@ -390,10 +407,11 @@ def EndTurn():
         end_turn.configure(state = DISABLED)
         rolls = []
         labels = []
+        buttons = []
         turnCheck += 1
         farkleCheck = 0
         round_points = 0
-        length = len(labels)
+        length = 0
         dice_count = 0
         if turnCheck % 2 == 0:
             turn_label.configure(text = "Player 1's Turn")
@@ -540,10 +558,11 @@ p2points_label = Label(root, text = "Player 2 Points:", font = ('12'), bg = "lig
 points_box_label = Label(root, text = "Possible Points:", font = ('10'))
 turn_label = Label(root, text = "Player 1's Turn", font = ('12'))
 scoring_label = Label(root, image = scorecard)
+reset_button = Button(root, height = 5, width = 20, text = "Reset Chosen Dice", state = DISABLED, command = lambda : resetDice())
 
 roll_button.grid(row = 2, column = 1, columnspan = 2)
 roll_again.grid(row = 3, column = 1, columnspan = 2)
-end_turn.grid(row = 4, column = 1, columnspan = 2, sticky = N)
+end_turn.grid(row = 4, column = 1, columnspan = 2)
 dice_button1.grid(row = 1, column = 1)
 dice_button2.grid(row = 1, column = 2)
 dice_button3.grid(row = 1, column = 3)
@@ -557,57 +576,70 @@ p2points_box.grid(row = 0, column = 7, columnspan = 3)
 p2points_label.grid(row = 0, column = 5, columnspan = 2)
 points_box_label.grid(row = 2, column = 10)
 turn_label.grid(row = 3, column = 10)
-scoring_label.grid(row = 4, rowspan = 4, column = 10, columnspan = 5)
+#scoring_label.grid(row = 4, rowspan = 4, column = 10, columnspan = 10)
+reset_button.grid(row = 5, column = 1, columnspan = 2, sticky = N)
 
 
 dice = [1, 2, 3, 4, 5, 6]
 
 def keep_dice(button):
-    global count, number_of_dice, labels, dice_count
+    global count, number_of_dice, labels, dice_count, buttons
     if button["text"] == "1":
         point_label = Label(root, image = one, text = "1")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
+        buttons.append(button)
         count += 1
         number_of_dice -= 1
-        button.grid_forget()
+        button.grid_remove()
+        reset_button.configure(state = NORMAL)
     elif button["text"] == "2" and roll.count(2) >= 3:
         point_label = Label(root, image = two, text = "2")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
+        buttons.append(button)
         count += 1
         number_of_dice -= 1
-        button.grid_forget()
+        button.grid_remove()
+        reset_button.configure(state = NORMAL)
     elif button["text"] == "3" and roll.count(3) >= 3:
         point_label = Label(root, image = three, text = "3")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
+        buttons.append(button)
         count += 1
         number_of_dice -= 1
-        button.grid_forget()
+        button.grid_remove()
+        reset_button.configure(state = NORMAL)
     elif button["text"] == "4" and roll.count(4) >= 3:
         point_label = Label(root, image = four, text = "4")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
         count += 1
         number_of_dice -= 1
-        button.grid_forget()
+        button.grid_remove()
+        reset_button.configure(state = NORMAL)
     elif button["text"] == "5":
         point_label = Label(root, image = five, text = "5")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
+        buttons.append(button)
         count += 1
         number_of_dice -= 1
-        button.grid_forget()
+        button.grid_remove()
+        reset_button.configure(state = NORMAL)
     elif button["text"] == "6" and roll.count(6) >= 3:
         point_label = Label(root, image = six, text = "6")
         point_label.grid(row = roll_turns + 2, column = count + 3)
         labels.append(point_label)
+        buttons.append(button)
         count += 1
         number_of_dice -= 1
-        button.grid_forget()
+        button.grid_remove()
+        reset_button.configure(state = NORMAL)
     else:
         messagebox.showerror("Farkle", "You can only choose 1 or 5 unless the number has a count of greater than 2")
+    print(buttons)
     points()
     dice_count += 1
     
