@@ -111,7 +111,7 @@ def straight():
 def triplets():
     global roll
     x = 0
-    if number_of_dice < 5:
+    if number_of_dice < 6:
         return False
     else:
         for numbers in roll:
@@ -197,7 +197,7 @@ def rollCheck():
 def pairs():  ##function to determine if there are 3 pairs
     global roll
     x = 0
-    if number_of_dice < 5:
+    if number_of_dice < 6:
         return False
     else:
         for number in roll:
