@@ -1,2 +1,2 @@
 # Farkle
-This is a WIP Farkle dice game. 
+This is a WIP implementation of the Farkle dice game. 
